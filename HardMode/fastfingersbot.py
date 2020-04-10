@@ -29,8 +29,10 @@ class FFBot(object):
                 self.thread_cod = 1
             else:
                 self.start_thread()
+
             fastfingers.write(self.current_frame)
             sleep(1.3)
+            
             self.current_frame = self.second_frame
 
     def get_second_frame(self):
