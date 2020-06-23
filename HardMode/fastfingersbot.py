@@ -8,8 +8,8 @@ __version__ = ''
 __contact__ = '__Nairy__#7181 or https://www.github.com/znairy/'
 
 import pytesseract
-import pyautogui as fastfingers
-import pyscreenshot as screenshot
+import pyautogui as Fastfingers
+import pyscreenshot as Screenshot
 from threading import Thread
 from time import sleep
 
@@ -20,33 +20,33 @@ class FFBot(object):
         self.second_frame = None
         self.thread_cod = 0
     
-    def start(self):
+    def Start(self):
         while True:
             if(self.thread_cod == 0):
-                self.current_frame = screenshot.grab(bbox=(240, 290, 1073, 340))
+                self.current_frame = Screenshot.grab(bbox=(240, 290, 1073, 340))
                 self.current_frame = pytesseract.image_to_string(self.current_frame, lang='por') + ' '
-                self.start_thread()
+                self.StartThread()
                 self.thread_cod = 1
             else:
-                self.start_thread()
+                self.StartThread()
 
-            fastfingers.write(self.current_frame)
-            sleep(1.3)
+            Fastfingers.write(self.current_frame)
+            sleep(1)
             
             self.current_frame = self.second_frame
 
-    def get_second_frame(self):
-        self.second_frame = screenshot.grab(bbox=(240, 340, 1073, 385))
+    def GetSecondFrame(self):
+        self.second_frame = Screenshot.grab(bbox=(240, 340, 1073, 385))
         self.second_frame = pytesseract.image_to_string(self.second_frame, lang='por') + ' '
 
-    def start_thread(self):
-        thread = Thread(target=self.get_second_frame)
+    def StartThread(self):
+        thread = Thread(target=self.GetSecondFrame)
         thread.daemon=True
         thread.start()
 
 def main():
     FastFingerBot = FFBot()
-    FastFingerBot.start()
+    FastFingerBot.Start()
 
 
 if __name__ == '__main__':
